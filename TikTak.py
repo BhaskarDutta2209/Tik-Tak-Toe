@@ -279,4 +279,5 @@ def gameReset():
 
 startScreen()
 drawBoard()
+
 gameLoop()
