@@ -1,2 +1,16 @@
-# Tik-Tak-Toe
-A simple game of Tik Tak Toe
+***********************************************************************************************************************
+-------------------------------------------------- Tik-Tak-Toe --------------------------------------------------------
+***********************************************************************************************************************
+This is simple GUI Based python game.
+ 
+ Packages
+ -time
+ -pygame
+ -sys
+ -random
+ 
+ 
+ About Game
+ the is attractive gui based game youcan take it as coding project in your college and school.
+ 
+ 
