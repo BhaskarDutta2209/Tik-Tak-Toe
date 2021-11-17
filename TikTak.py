@@ -13,6 +13,11 @@ board = [[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]
 
 white = (255,255,255)
 black = (0,0,0)
+purple = (82, 45, 128)
+orange = (245, 102, 0)
+
+#Background
+clemson = pygame.image.load('images/Clemson.png')
 
 display_width = 800
 display_height = 600
@@ -21,24 +26,26 @@ gameDisplay = pygame.display.set_mode((display_width,display_height))
 pygame.display.set_caption("Tik Tak Toe")
 
 gameDisplay.fill(white)
+gameDisplay.blit(clemson, (225, 450))
 
 
 def drawBoard():
     gameDisplay.fill(white)
+    gameDisplay.blit(clemson, (225,450))
 
     #The code below draws the matrix board
     
-    pygame.draw.line(gameDisplay,black,(display_width//2 - 50,display_height//2 - 150),(display_width//2 - 50,display_height//2 + 150),4)
-    pygame.draw.line(gameDisplay,black,(display_width//2 + 50,display_height//2 - 150),(display_width//2 + 50,display_height//2 + 150),4)
-    pygame.draw.line(gameDisplay,black,(display_width//2 - 150,display_height//2 - 50),(display_width//2 + 150,display_height//2 - 50),4)
-    pygame.draw.line(gameDisplay,black,(display_width//2 - 150,display_height//2 + 50),(display_width//2 + 150,display_height//2 + 50),4)
+    pygame.draw.line(gameDisplay,orange,(display_width//2 - 50,display_height//2 - 150),(display_width//2 - 50,display_height//2 + 150),4)
+    pygame.draw.line(gameDisplay,orange,(display_width//2 + 50,display_height//2 - 150),(display_width//2 + 50,display_height//2 + 150),4)
+    pygame.draw.line(gameDisplay,orange,(display_width//2 - 150,display_height//2 - 50),(display_width//2 + 150,display_height//2 - 50),4)
+    pygame.draw.line(gameDisplay,orange,(display_width//2 - 150,display_height//2 + 50),(display_width//2 + 150,display_height//2 + 50),4)
 
 def drawCross(x,y):
-    pygame.draw.line(gameDisplay,black,(x+10,y+10),(x+90,y+90),6)
-    pygame.draw.line(gameDisplay,black,(x+90,y+10),(x+10,y+90),6)
+    pygame.draw.line(gameDisplay,purple,(x+10,y+10),(x+90,y+90),6)
+    pygame.draw.line(gameDisplay,purple,(x+90,y+10),(x+10,y+90),6)
     
 def drawCircle(x,y):
-    pygame.draw.circle(gameDisplay,black,(x+50,y+50),45,6)
+    pygame.draw.circle(gameDisplay,orange,(x+50,y+50),45,6)
 
 
 
@@ -235,6 +242,7 @@ def winnerScreen(winner):
     print("Winner")
     time.sleep(1)
     gameDisplay.fill(white)
+    gameDisplay.blit(clemson, (225, 450))
 
     while True:
         for event in pygame.event.get():
@@ -243,8 +251,8 @@ def winnerScreen(winner):
                 sys.exit()
             screenMsg(winner,100,(display_width//2,display_height//4-100))
             screenMsg("Wanna Play Again??",50,(display_width//2,display_height//4))
-            pygame.draw.rect(gameDisplay,black,(display_width//2-75,(display_height//4)+25,50,50))
-            pygame.draw.rect(gameDisplay,black,(display_width//2+25,(display_height//4)+25,50,50))
+            pygame.draw.rect(gameDisplay,white,(display_width//2-75,(display_height//4)+25,50,50))
+            pygame.draw.rect(gameDisplay,white,(display_width//2+25,(display_height//4)+25,50,50))
             screenMsg("Yes",50,(display_width//2-50,display_height//4+50))
             screenMsg("No",50,(display_width//2+50,display_height//4+50))
 
@@ -265,6 +273,7 @@ def winnerScreen(winner):
 
 def gameReset():
     gameDisplay.fill(white)
+    gameDisplay.blit(clemson, (225, 450))
     global board
     board = [[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]
     global sign
