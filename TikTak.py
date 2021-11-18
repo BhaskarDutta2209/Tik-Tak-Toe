@@ -2,6 +2,7 @@ import pygame
 import time
 from random import *
 import sys
+from pygame import mixer
 
 pygame.init()
 pygame.font.init()
@@ -14,6 +15,11 @@ board = [[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]
 white = (255,255,255)
 orange = (245, 102, 0)
 black = (0,0,0)
+purple = (82, 45, 128)
+orange = (245, 102, 0)
+
+#Background
+clemson = pygame.image.load('images/Clemson.png')
 
 display_width = 800
 display_height = 600
@@ -21,25 +27,31 @@ display_height = 600
 gameDisplay = pygame.display.set_mode((display_width,display_height))
 pygame.display.set_caption("Tik Tak Toe")
 
-gameDisplay.fill(orange)
+gameDisplay.fill(white)
+gameDisplay.blit(clemson, (225, 450))
+
+# Sound
+mixer.music.load("TikTakmusic.mp3")
+mixer.music.play(-1)
 
 
 def drawBoard():
-    gameDisplay.fill(orange)
+    gameDisplay.fill(white)
+    gameDisplay.blit(clemson, (225,450))
 
     #The code below draws the matrix board
     
-    pygame.draw.line(gameDisplay,black,(display_width//2 - 50,display_height//2 - 150),(display_width//2 - 50,display_height//2 + 150),4)
-    pygame.draw.line(gameDisplay,black,(display_width//2 + 50,display_height//2 - 150),(display_width//2 + 50,display_height//2 + 150),4)
-    pygame.draw.line(gameDisplay,black,(display_width//2 - 150,display_height//2 - 50),(display_width//2 + 150,display_height//2 - 50),4)
-    pygame.draw.line(gameDisplay,black,(display_width//2 - 150,display_height//2 + 50),(display_width//2 + 150,display_height//2 + 50),4)
+    pygame.draw.line(gameDisplay,orange,(display_width//2 - 50,display_height//2 - 150),(display_width//2 - 50,display_height//2 + 150),4)
+    pygame.draw.line(gameDisplay,orange,(display_width//2 + 50,display_height//2 - 150),(display_width//2 + 50,display_height//2 + 150),4)
+    pygame.draw.line(gameDisplay,orange,(display_width//2 - 150,display_height//2 - 50),(display_width//2 + 150,display_height//2 - 50),4)
+    pygame.draw.line(gameDisplay,orange,(display_width//2 - 150,display_height//2 + 50),(display_width//2 + 150,display_height//2 + 50),4)
 
 def drawCross(x,y):
-    pygame.draw.line(gameDisplay,black,(x+10,y+10),(x+90,y+90),6)
-    pygame.draw.line(gameDisplay,black,(x+90,y+10),(x+10,y+90),6)
+    pygame.draw.line(gameDisplay,purple,(x+10,y+10),(x+90,y+90),6)
+    pygame.draw.line(gameDisplay,purple,(x+90,y+10),(x+10,y+90),6)
     
 def drawCircle(x,y):
-    pygame.draw.circle(gameDisplay,black,(x+50,y+50),45,6)
+    pygame.draw.circle(gameDisplay,orange,(x+50,y+50),45,6)
 
 
 
@@ -111,8 +123,8 @@ def startScreen():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            screenMsg("Lets Play",150,(display_width//2,display_height//2-150))
-            screenMsg("Choose you sign",50,(display_width//2,display_height//2-50))
+            screenMsg("Let's Play!",150,(display_width//2,display_height//2-150))
+            screenMsg("Choose your sign",50,(display_width//2,display_height//2-50))
             drawCross(display_width//2-150,display_height//2)
             drawCircle(display_width//2+50,display_height//2)
             
@@ -137,6 +149,7 @@ def startScreen():
             
             
             pygame.display.update()
+            #https://youtu.be/dQw4w9WgXcQ
             
             
 
@@ -239,7 +252,10 @@ def winnerScreen(winner):
     pygame.display.update()
     print("Winner")
     time.sleep(1)
-    gameDisplay.fill(orange)
+
+    gameDisplay.fill(white)
+    gameDisplay.blit(clemson, (225, 450))
+
 
     while True:
         for event in pygame.event.get():
@@ -248,19 +264,22 @@ def winnerScreen(winner):
                 sys.exit()
             screenMsg(winner,100,(display_width//2,display_height//4-100))
             screenMsg("Wanna Play Again??",50,(display_width//2,display_height//4))
-            # pygame.draw.rect(gameDisplay,black,(display_width//2-75,(display_height//4)+25,50,50))
-            # pygame.draw.rect(gameDisplay,black,(display_width//2+25,(display_height//4)+25,50,50))
+
+
+            pygame.draw.rect(gameDisplay,black,(display_width//2-75,(display_height//4)+75,50,50))
+            pygame.draw.rect(gameDisplay,black,(display_width//2+25,(display_height//4)+75,50,50))
+
             screenMsg("Yes",50,(display_width//2-50,display_height//4+50))
             screenMsg("No",50,(display_width//2+50,display_height//4+50))
 
             pos = pygame.mouse.get_pos()
 
-            if (display_width//2-75<=pos[0]<=(display_width//2-75)+50) and ((display_height//4)+25<=pos[1]<=((display_height//4)+25)+50):
+            if (display_width//2-75<=pos[0]<=(display_width//2-75)+50) and ((display_height//4)+75<=pos[1]<=((display_height//4)+75)+50):
                 print("Yes")
                 if pygame.mouse.get_pressed()[0] == 1:
                     gameReset()
                 
-            if (display_width//2+25<=pos[0]<=(display_width//2+25)+50) and ((display_height//4)+25<=pos[1]<=((display_height//4)+25)+50):
+            if (display_width//2+25<=pos[0]<=(display_width//2+25)+50) and ((display_height//4)+75<=pos[1]<=((display_height//4)+75)+50):
                 print("No")
                 if pygame.mouse.get_pressed()[0] == 1:
                     pygame.quit()
@@ -269,7 +288,10 @@ def winnerScreen(winner):
         pygame.display.update()
 
 def gameReset():
-    gameDisplay.fill(orange)
+
+    gameDisplay.fill(white)
+    gameDisplay.blit(clemson, (225, 450))
+
     global board
     board = [[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]
     global sign
@@ -281,7 +303,7 @@ def gameReset():
     drawBoard()
     gameLoop()
             
-
+# rename main function perhaps
 startScreen()
 drawBoard()
 gameLoop()
