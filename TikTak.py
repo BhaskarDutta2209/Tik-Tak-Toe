@@ -276,7 +276,7 @@ def gameReset():
     drawBoard()
     gameLoop()
             
-
+# rename main function perhaps
 startScreen()
 drawBoard()
 gameLoop()
