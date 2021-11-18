@@ -243,19 +243,19 @@ def winnerScreen(winner):
                 sys.exit()
             screenMsg(winner,100,(display_width//2,display_height//4-100))
             screenMsg("Wanna Play Again??",50,(display_width//2,display_height//4))
-            pygame.draw.rect(gameDisplay,black,(display_width//2-75,(display_height//4)+25,50,50))
-            pygame.draw.rect(gameDisplay,black,(display_width//2+25,(display_height//4)+25,50,50))
+            pygame.draw.rect(gameDisplay,black,(display_width//2-75,(display_height//4)+75,50,50))
+            pygame.draw.rect(gameDisplay,black,(display_width//2+25,(display_height//4)+75,50,50))
             screenMsg("Yes",50,(display_width//2-50,display_height//4+50))
             screenMsg("No",50,(display_width//2+50,display_height//4+50))
 
             pos = pygame.mouse.get_pos()
 
-            if (display_width//2-75<=pos[0]<=(display_width//2-75)+50) and ((display_height//4)+25<=pos[1]<=((display_height//4)+25)+50):
+            if (display_width//2-75<=pos[0]<=(display_width//2-75)+50) and ((display_height//4)+75<=pos[1]<=((display_height//4)+75)+50):
                 print("Yes")
                 if pygame.mouse.get_pressed()[0] == 1:
                     gameReset()
                 
-            if (display_width//2+25<=pos[0]<=(display_width//2+25)+50) and ((display_height//4)+25<=pos[1]<=((display_height//4)+25)+50):
+            if (display_width//2+25<=pos[0]<=(display_width//2+25)+50) and ((display_height//4)+75<=pos[1]<=((display_height//4)+75)+50):
                 print("No")
                 if pygame.mouse.get_pressed()[0] == 1:
                     pygame.quit()
