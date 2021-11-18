@@ -2,6 +2,7 @@ import pygame
 import time
 from random import *
 import sys
+from pygame import mixer
 
 pygame.init()
 pygame.font.init()
@@ -27,6 +28,10 @@ pygame.display.set_caption("Tik Tak Toe")
 
 gameDisplay.fill(white)
 gameDisplay.blit(clemson, (225, 450))
+
+# Sound
+mixer.music.load("TikTakmusic.mp3")
+mixer.music.play(-1)
 
 
 def drawBoard():
@@ -117,8 +122,8 @@ def startScreen():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            screenMsg("Lets Play",150,(display_width//2,display_height//2-150))
-            screenMsg("Choose you sign",50,(display_width//2,display_height//2-50))
+            screenMsg("Let's Play!",150,(display_width//2,display_height//2-150))
+            screenMsg("Choose your sign",50,(display_width//2,display_height//2-50))
             drawCross(display_width//2-150,display_height//2)
             drawCircle(display_width//2+50,display_height//2)
             
