@@ -148,6 +148,7 @@ def startScreen():
             
             
             pygame.display.update()
+            #https://youtu.be/dQw4w9WgXcQ
             
             
 
@@ -292,7 +293,7 @@ def gameReset():
     drawBoard()
     gameLoop()
             
-
+# rename main function perhaps
 startScreen()
 drawBoard()
 gameLoop()
