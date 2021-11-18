@@ -13,6 +13,7 @@ csign = None
 board = [[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]
 
 white = (255,255,255)
+orange = (245, 102, 0)
 black = (0,0,0)
 purple = (82, 45, 128)
 orange = (245, 102, 0)
@@ -79,8 +80,8 @@ def getStartingPoint(box):
 def boxLocation(mousePos):
     x = mousePos[0]
     y = mousePos[1]
-
     if x <= (display_width//2-50) and x > (display_width//2 - 150):
+
         if y>(display_height//2 - 150) and y <= (display_height//2 - 50):
             return (0,0)
         if y>(display_height//2 - 50) and y <= (display_height//2+50):
@@ -152,8 +153,7 @@ def startScreen():
             
             
 
-            
-
+    
 
 def gameLoop():
     global sign
@@ -182,6 +182,8 @@ def gameLoop():
                                 drawCircle(x,y)
 
                             checkMatch()
+                            pygame.display.update()
+                            time.sleep(1)
                             cmpPlay()
                             checkMatch()
                         else:
@@ -190,8 +192,8 @@ def gameLoop():
         pygame.display.update()
 
 def cmpPlay():
-
     # Try to create the logic where computer chooses its box
+    
     global sign
     global csign
     if sign == 1:
@@ -204,15 +206,18 @@ def cmpPlay():
 
             x = randint(0,2)
             y = randint(0,2)
-            print("aaa")
+
             if board[x][y] == -1:
                 board[x][y] = csign
                 p,q = getStartingPoint((x,y))
+
                 if csign == 1:
                     drawCross(p,q)
+                    
                 elif csign == 0:
                     drawCircle(p,q)
                 break
+            
     
 def checkMatch():
     if not (-1 in board[0] or -1 in board[1] or -1 in board[2]):
@@ -247,8 +252,10 @@ def winnerScreen(winner):
     pygame.display.update()
     print("Winner")
     time.sleep(1)
+
     gameDisplay.fill(white)
     gameDisplay.blit(clemson, (225, 450))
+
 
     while True:
         for event in pygame.event.get():
@@ -257,6 +264,7 @@ def winnerScreen(winner):
                 sys.exit()
             screenMsg(winner,100,(display_width//2,display_height//4-100))
             screenMsg("Wanna Play Again??",50,(display_width//2,display_height//4))
+
 
             pygame.draw.rect(gameDisplay,black,(display_width//2-75,(display_height//4)+75,50,50))
             pygame.draw.rect(gameDisplay,black,(display_width//2+25,(display_height//4)+75,50,50))
@@ -280,8 +288,10 @@ def winnerScreen(winner):
         pygame.display.update()
 
 def gameReset():
+
     gameDisplay.fill(white)
     gameDisplay.blit(clemson, (225, 450))
+
     global board
     board = [[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]
     global sign
